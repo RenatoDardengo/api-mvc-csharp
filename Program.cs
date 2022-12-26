@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using mvc_api.Servicos;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+var strCon = builder.Configuration.GetConnectionString("MinhaConexao");
+builder.Services.AddDbContext<DbContexto>(options => options.UseSqlServer(strCon));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
